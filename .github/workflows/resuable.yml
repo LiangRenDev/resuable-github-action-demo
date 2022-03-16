@@ -39,4 +39,4 @@ jobs:
             who-to-greet: 'Mona the Octocat'
             
       - name: Echo time from last steps
-        run: echo ${{ steps.timer.output.time }}
+        run: echo ${{ steps.timer.outputs.time }}
