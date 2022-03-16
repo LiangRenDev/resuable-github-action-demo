@@ -8,9 +8,7 @@ on:
   workflow_call:
     secrets:
       slack_webhook:
-        required: true
-    inputs:
-  
+        required: true  
   # Manually trigger the workflow
   workflow_dispatch:
         
@@ -33,3 +31,12 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.slack_webhook }}
           SLACK_MESSAGE: 'Hello Slack :rocket:'
+
+      - name: Run a simple docker action
+        id: timer
+        uses: actions/hello-world-docker-action@master
+        with:
+            who-to-greet: 'Mona the Octocat'
+            
+      - name: Echo time from last steps
+        run: echo ${{ steps.timer.output.time }}
